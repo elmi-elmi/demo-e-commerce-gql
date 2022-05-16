@@ -220,7 +220,7 @@ const reviews = [
         date: "2020-07-23",
         title: "I made the Nba",
         comment: "My name is LeBron James",
-        rating: 5,
+        rating: 3,
         productId: "f01bcdec-6783-464e-8f9e-8416830f7569",
     },
     {
@@ -228,7 +228,7 @@ const reviews = [
         date: "2020-07-23",
         title: "I did not make the NBA",
         comment: "My name is Laith Harb",
-        rating: 5,
+        rating: 4,
         productId: "f01bcdec-6783-464e-8f9e-8416830f7569",
     },
     {
