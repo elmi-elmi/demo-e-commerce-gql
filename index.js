@@ -4,10 +4,12 @@ const {Category} = require('./resolver/Category')
 const {Query} = require('./resolver/Query')
 const {Product} = require('./resolver/Product')
 const {categories, products, reviews} = require('./db');
+const {Mutation} = require('./resolver/Mutation')
 const resolvers = {
     Query,
     Category,
-    Product
+    Product,
+    Mutation
 }
 
 const context = {
@@ -19,4 +21,4 @@ const server = new ApolloServer({typeDefs, resolvers, context});
 
 server.listen().then(({url}) => {
     console.log(`🚀 Server ready at ${url}`);
-}); 
+});
