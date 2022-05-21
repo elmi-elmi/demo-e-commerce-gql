@@ -1,19 +1,17 @@
 const {v4: uuid} = require('uuid');
 
 exports.Mutation = {
-    addNewCategory: (parent, {input}, {categories}) => {
-        console.log(categories)
+    addNewCategory: (parent, {input}, {db}) => {
         const newCategory = {
             name: input.name,
             id: uuid()
         }
-        categories.push(newCategory);
-        console.log(categories)
+        db.categories.push(newCategory);
 
         return newCategory
     },
 
-    addProduct:(parent, {input}, {products})=>{
+    addProduct:(parent, {input}, {db})=>{
         const {name, image,description, quantity,price,onSale, categoryId} = input
         const newProduct = {
             id:uuid(),
@@ -25,11 +23,11 @@ exports.Mutation = {
             onSale,
             categoryId,
         }
-        products.push(newProduct)
+        db.products.push(newProduct)
 
         return newProduct
     },
-    addReview:(parent,{input},{reviews})=>{
+    addReview:(parent,{input},{db})=>{
         const {
             date,
             title,
@@ -44,12 +42,26 @@ exports.Mutation = {
 
         }
 
-        reviews.push(newReview)
+        db.reviews.push(newReview)
 
         return newReview
 
+    },
+    deleteCategory:(parent,{id},{db})=>{
+
+        db.categories = db.categories.filter(category=>category.id!==id)
+        db.products.forEach(product=>{
+            if(product.categoryId === id) product.categoryId = null
+        })
+        return true
+    },
+    deleteProduct:(parent,{id}, {db})=>{
+        db.products = db.products.filter(p=>p.id!==id);
+        db.reviews = db.reviews.filter(r=>r.productId!==id)
+        return true
     }
 }
 
 
-I love graphql  everybody can type very quiekly
+
+

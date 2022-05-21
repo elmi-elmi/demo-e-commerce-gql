@@ -1,6 +1,6 @@
 exports.Category={
-    products:({id}, {filter}, {products, reviews})=>{
-        let filteredProducts = products.filter(product=>product.categoryId === id);
+    products:({id}, {filter}, {db})=>{
+        let filteredProducts = db.products.filter(product=>product.categoryId === id);
 
         if(filter){
             const {onSale, avgRating} = filter
@@ -13,7 +13,7 @@ exports.Category={
                 filteredProducts = filteredProducts.filter(product=>{
                     let sumRating = 0;
                     let reviewNumber=0;
-                    reviews.forEach(review=>{
+                    db.reviews.forEach(review=>{
                         if(review.productId === product.id){
                             sumRating += review.rating
                             reviewNumber++

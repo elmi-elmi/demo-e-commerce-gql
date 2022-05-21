@@ -3,7 +3,7 @@ const {typeDefs} = require('./schema.js');
 const {Category} = require('./resolver/Category')
 const {Query} = require('./resolver/Query')
 const {Product} = require('./resolver/Product')
-const {categories, products, reviews} = require('./db');
+const {db} = require('./db');
 const {Mutation} = require('./resolver/Mutation')
 const resolvers = {
     Query,
@@ -13,9 +13,7 @@ const resolvers = {
 }
 
 const context = {
-    categories,
-    products,
-    reviews
+   db
 }
 const server = new ApolloServer({typeDefs, resolvers, context});
 

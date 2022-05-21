@@ -12,6 +12,8 @@ exports.typeDefs = gql`
     addNewCategory(input:AddCategoryInput!):Category!
     addProduct(input:AddProductInput!):Product!
     addReview(input:AddReviewInput!):Review!
+    deleteCategory(id:ID!):Boolean!
+    deleteProduct(id:ID!):Boolean!
   }
   input AddReviewInput {
     date:String!
@@ -42,6 +44,7 @@ exports.typeDefs = gql`
       onSale: Boolean!
       category:Category
       reviews:[Review!]!
+      categoryId:String
   }
   
   type Category{

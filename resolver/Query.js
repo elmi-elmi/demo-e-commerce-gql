@@ -1,6 +1,6 @@
 exports.Query={
-        products:(parent, {filter}, {products}) => {
-            let filteredProducts = products;
+        products:(parent, {filter}, {db}) => {
+            let filteredProducts = db.products;
 
             if(filter){
                 if(filter.onSale){
@@ -10,13 +10,12 @@ exports.Query={
 
             return filteredProducts
         },
-        product:(parent, {id}, {products})=>{
-        return products.find(product => product.id === id)||null;
+        product:(parent, {id}, {db})=>{
+        return db.products.find(product => product.id === id)||null;
     },
-        categories:(parent, args, {categories})=>categories,
-        category:(parent, args,{categories})=>{
+        categories:(parent, args, {db})=>db.categories,
+        category:(parent, args,{db})=>{
         const {id} = args;
-        console.log(categories.find(category=>category.id===id))
-        return categories.find(category=>category.id===id)
+        return db.categories.find(category=>category.id===id)
     }
 }
